@@ -1,0 +1,222 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section + .section {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ── Cover banner ── */
+.cover {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.coverBg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.8;
+}
+
+.coverImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 8s ease;
+  transform: scale(1.05);
+}
+
+.coverImgVisible {
+  opacity: 0.45;
+  transform: scale(1);
+}
+
+.coverOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(30, 28, 29, 0.92) 0%,
+    rgba(30, 28, 29, 0.5) 50%,
+    rgba(30, 28, 29, 0.2) 100%
+  );
+}
+
+.coverContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+  padding: 40px 48px;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.coverIcon {
+  font-size: 60px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 24px rgba(201, 168, 76, 0.5));
+  margin-bottom: 4px;
+}
+
+.coverSubtitle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.coverTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.coverDesc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  max-width: 440px;
+  line-height: 1.5;
+}
+
+/* ── Product grid ── */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.dividerLine {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.dividerLine::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  max-width: 200px;
+}
+
+.dividerDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  animation: pulseGoldLocal 2s ease-in-out infinite;
+}
+
+@keyframes pulseGoldLocal {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+}
+
+.dividerLine::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.05);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Cards use transition (not animation) so no keyframe reference needed */
+.cardWrap {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.section.visible .cardWrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .cover {
+    height: 220px;
+  }
+
+  .coverContent {
+    padding: 28px 24px;
+    gap: 16px;
+  }
+
+  .coverIcon {
+    font-size: 44px;
+  }
+
+  .container {
+    padding: 36px 20px 60px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cover {
+    height: 200px;
+  }
+
+  .coverContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 20px;
+  }
+
+  .coverIcon {
+    font-size: 36px;
+    margin-bottom: 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
