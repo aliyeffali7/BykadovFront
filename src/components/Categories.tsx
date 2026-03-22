@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { categories } from '@/lib/categories'
 
@@ -15,7 +16,7 @@ export default function Categories() {
         <div className="mb-14 lg:mb-20 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
           <div>
             <p className="text-xs tracking-[0.2em] uppercase text-[#DDBC75] font-medium mb-3">
-              Kateqoriyaya görə baxın
+              Kataloqa görə baxın
             </p>
             <h2 className="font-serif text-4xl lg:text-5xl font-bold text-white leading-tight">
               Sevdiyiniz hər şey,
@@ -26,7 +27,7 @@ export default function Categories() {
             href="/shop"
             className="self-start sm:self-auto flex items-center gap-2 text-sm text-[#DDBC75]/70 hover:text-[#DDBC75] transition-colors font-medium"
           >
-            Bütün 10 kateqoriyaya baxın <ArrowUpRight size={16} />
+            Bütün kataloqlar <ArrowUpRight size={16} />
           </Link>
         </div>
 
@@ -57,9 +58,11 @@ export default function Categories() {
               {/* Content */}
               <div className="relative z-10 h-full p-6 sm:p-8 flex flex-col justify-between">
                 <div className="flex items-start justify-between">
-                  <span className="text-5xl sm:text-6xl leading-none select-none">
-                    {cat.icon}
-                  </span>
+                  {cat.iconImage ? (
+                    <Image src={cat.iconImage} alt={cat.name} width={56} height={56} className="object-contain" />
+                  ) : (
+                    <span className="text-5xl sm:text-6xl leading-none select-none">{cat.icon}</span>
+                  )}
                   <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 text-[#DDBC75]">
                     <ArrowUpRight size={20} />
                   </span>
@@ -86,7 +89,11 @@ export default function Categories() {
               href={`/shop/${cat.slug}`}
               className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-brand-border text-sm text-white/50 hover:text-[#DDBC75] hover:border-[#DDBC75]/25 hover:bg-[#DDBC75]/5 transition-all"
             >
-              <span>{cat.icon}</span>
+              {cat.iconImage ? (
+                <Image src={cat.iconImage} alt={cat.name} width={18} height={18} className="object-contain" />
+              ) : (
+                <span>{cat.icon}</span>
+              )}
               {cat.name}
             </Link>
           ))}

@@ -1,12 +1,13 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { categories } from '@/lib/categories'
 
 export const metadata = {
-  title: 'Bütün Mağaza — ByKadov',
-  description: 'ByKadov-da bütün kateqoriyalara baxın.',
+  title: 'Kataloq — ByKadov',
+  description: 'ByKadov-da bütün kataloqlara baxın.',
 }
 
 export default function ShopPage() {
@@ -25,7 +26,7 @@ export default function ShopPage() {
         />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-xs tracking-[0.2em] uppercase text-[#DDBC75]/60 font-medium mb-4">
-            Bütün Kateqoriyalar
+            Bütün Kataloqlar
           </p>
           <h1 className="font-serif text-5xl lg:text-6xl font-bold text-white mb-4">
             Hər Şeyi Al
@@ -55,7 +56,11 @@ export default function ShopPage() {
                 }}
               />
               <div className="relative p-6 flex items-center gap-5">
-                <span className="text-4xl flex-shrink-0">{cat.icon}</span>
+                {cat.iconImage ? (
+                  <Image src={cat.iconImage} alt={cat.name} width={40} height={40} className="object-contain flex-shrink-0" />
+                ) : (
+                  <span className="text-4xl flex-shrink-0">{cat.icon}</span>
+                )}
                 <div className="min-w-0">
                   <h2 className="font-serif text-xl font-semibold text-white group-hover:text-[#DDBC75] transition-colors">
                     {cat.name}

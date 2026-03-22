@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Footer() {
   const links = {
-    Mağaza: ['Geyim', 'Qadın Aksesuarları', 'Müvəqqəti Döymələr', 'Ev & Dekor', 'Zərgərlik', 'Gözəllik'],
+    Mağaza: ['Geyim', 'Qadın Aksesuarları', 'Tattoo', 'Ev & Dekor', 'Zərgərlik', 'Gözəllik'],
     Yardım: ['Tez-tez Soruşulan Suallar', 'Çatdırılma Məlumatı', 'Geri Qaytarma', 'Sifarişi İzlə', 'Bizimlə Əlaqə'],
     Şirkət: ['ByKadov Haqqında', 'Davamlılıq', 'Karyera', 'Mətbuat'],
   }

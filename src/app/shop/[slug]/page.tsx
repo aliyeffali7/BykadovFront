@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ChevronRight, SlidersHorizontal } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -58,7 +59,11 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
           </nav>
 
           <div className="flex items-end gap-6">
-            <span className="text-5xl lg:text-6xl">{cat.icon}</span>
+            {cat.iconImage ? (
+              <Image src={cat.iconImage} alt={cat.name} width={60} height={60} className="object-contain" />
+            ) : (
+              <span className="text-5xl lg:text-6xl">{cat.icon}</span>
+            )}
             <div>
               <h1 className="font-serif text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
                 {cat.name}
@@ -155,7 +160,11 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
                   href={`/shop/${c.slug}`}
                   className="flex items-center gap-2 px-4 py-2 rounded-full border border-brand-border text-sm text-white/50 hover:text-[#DDBC75] hover:border-[#DDBC75]/25 transition-all"
                 >
-                  <span>{c.icon}</span>
+                  {c.iconImage ? (
+                    <Image src={c.iconImage} alt={c.name} width={16} height={16} className="object-contain" />
+                  ) : (
+                    <span>{c.icon}</span>
+                  )}
                   {c.name}
                 </Link>
               ))}

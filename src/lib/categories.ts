@@ -4,6 +4,7 @@ export type Category = {
   description: string
   longDescription: string
   icon: string
+  iconImage?: string
   color: string
   products: Product[]
 }
@@ -68,11 +69,12 @@ export const categories: Category[] = [
   },
   {
     slug: 'temporary-tattoos',
-    name: 'Müvəqqəti Döymələr',
+    name: 'Tattoo',
     description: 'Cəsarətli dizaynlar, öhdəliksiz',
     longDescription:
-      'Peşəkar müvəqqəti döymələr ki, real görünür və iki həftəyə qədər davam edir. Rəssamlar tərəfindən dizayn edilmişdir, hamı tərəfindən sevilir.',
+      'Peşəkar müvəqqəti tattoo ki, real görünür və iki həftəyə qədər davam edir. Rəssamlar tərəfindən dizayn edilmişdir, hamı tərəfindən sevilir.',
     icon: '✦',
+    iconImage: '/icons/tattoo.png',
     color: 'rgba(221,188,117,0.10)',
     products: [
       { id: 1, name: 'Çiçəkli Sarmaşıq Dəsti (12 ədəd)', price: 12, badge: 'Populyar' },
@@ -105,7 +107,7 @@ export const categories: Category[] = [
       { id: 5, name: 'Terracotta Saksı Dəsti (3 ədəd)', price: 42 },
       { id: 6, name: 'Şüşə Asma İşıq', price: 87, badge: 'Yeni' },
       { id: 7, name: 'Qurudulmuş Pampas Otu Dəstəsi', price: 29 },
-      { id: 8, name: 'Rattan Poднос Dəsti', price: 38, badge: 'Endirim', originalPrice: 52 },
+      { id: 8, name: 'Rattan Sini Dəsti', price: 38, badge: 'Endirim', originalPrice: 52 },
       { id: 9, name: 'Ətirli Soya Şamı', price: 24 },
       { id: 10, name: 'Makrame Divar Bəzəyi', price: 56, badge: 'Yeni' },
       { id: 11, name: 'Mərmər Altlıqlar (4 ədəd)', price: 32 },
@@ -119,6 +121,7 @@ export const categories: Category[] = [
     longDescription:
       'Hər gün taxmaq üçün və ya xüsusi günlər üçün hazırlanmış saflaşdırılmış zərgərlik.',
     icon: '💎',
+    iconImage: '/icons/jewellery.png',
     color: 'rgba(221,188,117,0.14)',
     products: [
       { id: 1, name: 'Qızıl Zəncir Boyunbağı — 18k', price: 89, badge: 'Yeni' },
@@ -243,7 +246,7 @@ export const categories: Category[] = [
       { id: 5, name: 'Bayram Şərf & Papaq Dəsti', price: 78 },
       { id: 6, name: 'Valentina Çiçəkli Döymələr', price: 14, badge: 'Məhdud' },
       { id: 7, name: 'Yay Saman Kolleksiyası', price: 65, badge: 'Yeni' },
-      { id: 8, name: 'Qış Dəri Bakım Dəsti', price: 92 },
+      { id: 8, name: 'Qış Dəri Baxım Dəsti', price: 92 },
       { id: 9, name: 'Qızıl Saat Çanta Dəsti', price: 135, badge: 'Məhdud' },
       { id: 10, name: 'Ramazan Kolleksiyası', price: 110, badge: 'Yeni' },
       { id: 11, name: 'Yeni İl Ziyafət Parıltısı', price: 68 },

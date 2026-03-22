@@ -28,7 +28,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-brand-black/96 backdrop-blur-md border-b border-brand-border shadow-lg shadow-black/50'
+          ? 'bg-brand-black border-b border-brand-border shadow-lg shadow-black/50'
           : 'bg-transparent'
       }`}
     >
@@ -37,14 +37,14 @@ export default function Navbar() {
 
           {/* ── Logo ─────────────────────────────── */}
           <Link href="/" className="flex-shrink-0">
-            <div className="relative h-12 w-52 lg:h-14 lg:w-64">
-              <Image
-                src="/logo.png"
-                alt="ByKadov"
-                fill
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="ByKadov"
+              width={160}
+              height={40}
+              className="object-contain"
+              priority
+            />
           </Link>
 
           {/* ── Desktop Nav ──────────────────────── */}
@@ -128,7 +128,7 @@ export default function Navbar() {
           </div>
           {/* All categories */}
           <p className="text-[10px] tracking-[0.15em] uppercase text-[#DDBC75]/50 font-medium mb-3">
-            Kateqoriyalar
+            Kataloq
           </p>
           <div className="grid grid-cols-2 gap-1.5">
             {categories.map((cat) => (
@@ -138,7 +138,11 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center gap-2.5 p-3 rounded-xl border border-brand-border hover:border-[#DDBC75]/20 hover:bg-white/3 transition-all"
               >
-                <span className="text-xl">{cat.icon}</span>
+                {cat.iconImage ? (
+                  <Image src={cat.iconImage} alt={cat.name} width={22} height={22} className="object-contain" />
+                ) : (
+                  <span className="text-xl">{cat.icon}</span>
+                )}
                 <span className="text-sm text-white/75 truncate">{cat.name}</span>
               </Link>
             ))}

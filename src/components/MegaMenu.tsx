@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { categories } from '@/lib/categories'
 
@@ -43,7 +44,11 @@ export default function MegaMenu({ open, onClose }: Props) {
                 onClick={onClose}
                 className="group flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-white/5 border border-transparent hover:border-[#DDBC75]/15"
               >
-                <span className="text-2xl mt-0.5 flex-shrink-0">{cat.icon}</span>
+                {cat.iconImage ? (
+                  <Image src={cat.iconImage} alt={cat.name} width={24} height={24} className="object-contain mt-0.5 flex-shrink-0" />
+                ) : (
+                  <span className="text-2xl mt-0.5 flex-shrink-0">{cat.icon}</span>
+                )}
                 <div className="min-w-0">
                   <p className="text-sm font-medium text-white/85 group-hover:text-[#DDBC75] transition-colors truncate">
                     {cat.name}

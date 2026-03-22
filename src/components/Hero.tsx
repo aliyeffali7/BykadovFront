@@ -56,9 +56,6 @@ export default function Hero() {
           >
             <Image src={CLOTHES_IMG} alt="Fashion" fill className="object-cover" priority sizes="400px" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            <span className="absolute bottom-3 left-3 text-[9px] tracking-[0.18em] uppercase text-[#DDBC75]/80 font-semibold bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-[#DDBC75]/20">
-              Clothing
-            </span>
           </div>
 
           {/* Perfume image — top right */}
@@ -75,9 +72,6 @@ export default function Hero() {
           >
             <Image src={PERFUME_IMG} alt="Perfumery" fill className="object-cover" sizes="360px" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            <span className="absolute bottom-3 left-3 text-[9px] tracking-[0.18em] uppercase text-[#DDBC75]/80 font-semibold bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-[#DDBC75]/20">
-              Perfumery
-            </span>
           </div>
 
           {/* Jewellery image — bottom right */}
@@ -94,9 +88,6 @@ export default function Hero() {
           >
             <Image src={JEWELLERY_IMG} alt="Jewellery" fill className="object-cover" sizes="360px" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            <span className="absolute bottom-3 left-3 text-[9px] tracking-[0.18em] uppercase text-[#DDBC75]/80 font-semibold bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-[#DDBC75]/20">
-              Jewellery
-            </span>
           </div>
 
           {/* Fade the collage into the dark bg on the left edge */}
@@ -132,7 +123,7 @@ export default function Hero() {
               className="font-serif text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] mb-6"
               style={{ animation: 'fadeUp 0.7s 0.1s ease both' }}
             >
-              <span className="block text-white">Stil</span>
+              <span className="block text-white">Stili</span>
               <span className="block text-gold-gradient">Yenidən Kəşf Et</span>
               <span className="block text-white/75 text-4xl sm:text-5xl lg:text-6xl font-normal italic mt-1">
                 sənin üçün.
@@ -168,7 +159,7 @@ export default function Hero() {
                 href="#categories"
                 className="flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium text-[#DDBC75] border border-[#DDBC75]/30 hover:border-[#DDBC75]/60 hover:bg-[#DDBC75]/5 transition-all duration-300"
               >
-                Kateqoriyalara Bax
+                Kataloqlara Bax
               </a>
             </div>
 
