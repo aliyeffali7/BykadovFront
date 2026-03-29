@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="relative h-16 w-64 mb-4">
-              <Image src="/logo.svg" alt="ByKadov" fill className="object-contain" />
+              <Image src="/logo.png" alt="ByKadov" fill className="object-contain" />
             </div>
             <p className="text-sm text-white/40 leading-relaxed mb-6 max-w-xs">
               Müasir fərd üçün seçilmiş stil. Keyfiyyətli parçalar, diqqətlə seçilmişdir.

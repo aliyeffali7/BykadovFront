@@ -40,7 +40,7 @@ export default function Navbar() {
           {/* ── Logo ─────────────────────────────── */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/logo.svg"
+              src="/logo.png"
               alt="ByKadov"
               width={160}
               height={40}
