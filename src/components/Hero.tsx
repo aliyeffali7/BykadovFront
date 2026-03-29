@@ -23,7 +23,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative w-full h-screen min-h-[680px] overflow-hidden bg-[#0b0d0d]">
+    <section className="relative w-full h-screen min-h-[680px] overflow-hidden bg-[#0b0d0d] pt-20 lg:pt-24">
 
       {/* ── Mobile background (hidden on lg+) ── */}
       <div className="absolute inset-0 lg:hidden">

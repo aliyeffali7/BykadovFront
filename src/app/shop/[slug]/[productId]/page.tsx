@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ProductCard from '@/components/ProductCard'
 import { categories, getCategoryBySlug, getProductById } from '@/lib/categories'
-import { getProductThumbnails } from '@/lib/productImages'
+import { getProductImage } from '@/lib/productImages'
 
 export async function generateStaticParams() {
   return categories.flatMap((cat) =>
@@ -132,7 +132,7 @@ export default function ProductPage({
   const details = getDetailRows(cat.slug)
   const description = product.description ?? getDescription(product.name, cat.slug)
   const recommended = cat.products.filter((p) => p.id !== product.id).slice(0, 4)
-  const thumbnails = getProductThumbnails(cat.slug, product.id)
+  const mainImage = getProductImage(cat.slug, product.id)
 
   return (
     <div className="min-h-screen bg-brand-black">
@@ -158,7 +158,7 @@ export default function ProductPage({
             {/* Main image */}
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
               <Image
-                src={thumbnails[0]}
+                src={mainImage}
                 alt={product.name}
                 fill
                 className="object-cover"
@@ -180,19 +180,6 @@ export default function ProductPage({
               )}
             </div>
 
-            {/* Thumbnail strip */}
-            <div className="grid grid-cols-4 gap-3">
-              {thumbnails.map((src, i) => (
-                <div
-                  key={i}
-                  className={`relative aspect-square rounded-xl overflow-hidden cursor-pointer border transition-all duration-200 ${
-                    i === 0 ? 'border-[#DDBC75]/50' : 'border-brand-border hover:border-[#DDBC75]/25'
-                  }`}
-                >
-                  <Image src={src} alt={`${product.name} view ${i + 1}`} fill className="object-cover" sizes="150px" />
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* ── Product Info ────────────────────────── */}
@@ -202,7 +189,7 @@ export default function ProductPage({
               href={`/shop/${cat.slug}`}
               className="text-xs font-medium tracking-[0.15em] uppercase text-[#DDBC75]/60 hover:text-[#DDBC75] transition-colors mb-3 w-fit"
             >
-              {cat.icon} {cat.name}
+              {cat.name}
             </Link>
 
             {/* Name */}
@@ -213,15 +200,15 @@ export default function ProductPage({
             {/* Price */}
             <div className="flex items-baseline gap-3 mb-6">
               <span className="text-3xl font-semibold text-[#DDBC75]">
-                ${product.price.toFixed(2)}
+                ₼{product.price.toFixed(2)}
               </span>
               {product.originalPrice && (
                 <>
                   <span className="text-lg text-white/30 line-through">
-                    ${product.originalPrice.toFixed(2)}
+                    ₼{product.originalPrice.toFixed(2)}
                   </span>
                   <span className="text-sm font-medium text-red-400">
-                    Save ${(product.originalPrice - product.price).toFixed(2)}
+                    -{(((product.originalPrice - product.price) / product.originalPrice) * 100).toFixed(0)}%
                   </span>
                 </>
               )}
@@ -282,9 +269,6 @@ export default function ProductPage({
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
               <button className="flex-1 py-4 rounded-xl bg-[#DDBC75] text-[#1A1D1D] text-sm font-bold tracking-wide hover:bg-[#c9aa60] transition-colors">
-                Səbətə Əlavə Et
-              </button>
-              <button className="flex-1 py-4 rounded-xl border border-[#DDBC75]/30 text-[#DDBC75] text-sm font-bold tracking-wide hover:bg-[#DDBC75]/5 hover:border-[#DDBC75]/60 transition-all">
                 İndi Al
               </button>
             </div>
@@ -305,15 +289,6 @@ export default function ProductPage({
               </div>
             </div>
 
-            {/* Trust badges */}
-            <div className="mt-8 pt-6 border-t border-brand-border flex flex-wrap gap-4">
-              {['$80-dan yuxarı pulsuz çatdırılma', 'Asan geri qaytarma', 'Təhlükəsiz ödəniş'].map((badge) => (
-                <span key={badge} className="text-[11px] text-white/30 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#DDBC75]/40" />
-                  {badge}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </main>

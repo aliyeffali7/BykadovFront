@@ -59,11 +59,11 @@ export default function ProductCard({ product, index = 0, categorySlug }: Props)
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-baseline gap-2">
             <span className="text-base font-semibold text-[#DDBC75]">
-              ${product.price.toFixed(2)}
+              ₼{product.price.toFixed(2)}
             </span>
             {product.originalPrice && (
               <span className="text-xs text-white/30 line-through">
-                ${product.originalPrice.toFixed(2)}
+                ₼{product.originalPrice.toFixed(2)}
               </span>
             )}
           </div>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 export default function Footer() {
   const links = {
     Mağaza: ['Geyim', 'Qadın Aksesuarları', 'Tattoo', 'Ev & Dekor', 'Zərgərlik', 'Gözəllik'],
-    Yardım: ['Tez-tez Soruşulan Suallar', 'Çatdırılma Məlumatı', 'Geri Qaytarma', 'Sifarişi İzlə', 'Bizimlə Əlaqə'],
+    Yardım: ['Tez-tez Soruşulan Suallar', 'Bizimlə Əlaqə'],
     Şirkət: ['ByKadov Haqqında', 'Davamlılıq', 'Karyera', 'Mətbuat'],
   }
 
@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="relative h-16 w-64 mb-4">
-              <Image src="/logo.png" alt="ByKadov" fill className="object-contain" />
+              <Image src="/logo.svg" alt="ByKadov" fill className="object-contain" />
             </div>
             <p className="text-sm text-white/40 leading-relaxed mb-6 max-w-xs">
               Müasir fərd üçün seçilmiş stil. Keyfiyyətli parçalar, diqqətlə seçilmişdir.

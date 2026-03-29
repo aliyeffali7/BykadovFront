@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ChevronRight, SlidersHorizontal } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -21,8 +20,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 const sortOptions = ['Seçilmiş', 'Qiymət: Aşağıdan Yuxarı', 'Qiymət: Yuxarıdan Aşağı', 'Yeni Gələnlər']
 const filterGroups = [
-  { label: 'Qiymət', options: ['$30-dan aşağı', '$30 – $75', '$75 – $150', '$150+'] },
-  { label: 'Mövcudluq', options: ['Stokda var', 'Sifariş'] },
+  { label: 'Qiymət', options: ['₼30-dan aşağı', '₼30 – ₼75', '₼75 – ₼150', '₼150+'] },
 ]
 
 export default function CategoryPage({ params }: { params: { slug: string } }) {
@@ -59,11 +57,6 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
           </nav>
 
           <div className="flex items-end gap-6">
-            {cat.iconImage ? (
-              <Image src={cat.iconImage} alt={cat.name} width={60} height={60} className="object-contain" />
-            ) : (
-              <span className="text-5xl lg:text-6xl">{cat.icon}</span>
-            )}
             <div>
               <h1 className="font-serif text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
                 {cat.name}
@@ -85,9 +78,9 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
               <span className="text-xs font-medium text-white/40">Filtr:</span>
               {filterGroups.map((g) => (
                 <div key={g.label} className="relative group">
-                  <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white/55 border border-brand-border hover:border-[#DDBC75]/30 hover:text-[#DDBC75] transition-all">
+                  <button className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold text-white/70 border border-brand-border hover:border-[#DDBC75]/40 hover:text-[#DDBC75] transition-all">
                     {g.label}
-                    <ChevronRight size={11} className="rotate-90" />
+                    <ChevronRight size={13} className="rotate-90" />
                   </button>
                   {/* Dropdown hint */}
                   <div className="absolute top-full left-0 mt-1 w-40 bg-brand-surface border border-brand-border rounded-xl p-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity shadow-xl z-40">
@@ -158,13 +151,8 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
                 <Link
                   key={c.slug}
                   href={`/shop/${c.slug}`}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-brand-border text-sm text-white/50 hover:text-[#DDBC75] hover:border-[#DDBC75]/25 transition-all"
+                  className="px-4 py-2 rounded-full border border-brand-border text-sm text-white/50 hover:text-[#DDBC75] hover:border-[#DDBC75]/25 transition-all"
                 >
-                  {c.iconImage ? (
-                    <Image src={c.iconImage} alt={c.name} width={16} height={16} className="object-contain" />
-                  ) : (
-                    <span>{c.icon}</span>
-                  )}
                   {c.name}
                 </Link>
               ))}

@@ -11,6 +11,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [megaOpen, setMegaOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
 
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        scrolled || searchOpen
           ? 'bg-brand-black border-b border-brand-border shadow-lg shadow-black/50'
           : 'bg-transparent'
       }`}
@@ -38,7 +40,7 @@ export default function Navbar() {
           {/* ── Logo ─────────────────────────────── */}
           <Link href="/" className="flex-shrink-0">
             <Image
-              src="/logo.png"
+              src="/logo.svg"
               alt="ByKadov"
               width={160}
               height={40}
@@ -66,30 +68,29 @@ export default function Navbar() {
             </button>
 
             <Link
-              href="#featured"
+              href="/yeni"
               className="px-4 py-2 text-sm font-medium text-white/70 hover:text-[#DDBC75] hover:bg-white/5 rounded-lg transition-all duration-200"
             >
               Yeni Gələnlər
             </Link>
             <Link
-              href="#"
-              className="px-4 py-2 text-sm font-medium text-white/70 hover:text-[#DDBC75] hover:bg-white/5 rounded-lg transition-all duration-200"
-            >
-              Endirim
-            </Link>
-            <Link
-              href="#"
+              href="/faq"
               className="px-4 py-2 text-sm font-medium text-white/70 hover:text-[#DDBC75] hover:bg-white/5 rounded-lg transition-all duration-200"
             >
               Haqqımızda
             </Link>
+
+            {/* Search icon — desktop, next to Haqqımızda */}
+            <button
+              onClick={() => setSearchOpen((v) => !v)}
+              className="ml-2 p-2.5 text-white hover:text-[#DDBC75] transition-colors rounded-lg hover:bg-white/5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]"
+            >
+              {searchOpen ? <X size={22} strokeWidth={2.5} /> : <Search size={22} strokeWidth={2.5} />}
+            </button>
           </nav>
 
           {/* ── Right Icons ──────────────────────── */}
           <div className="flex items-center gap-1">
-<button className="p-2.5 text-white/60 hover:text-[#DDBC75] transition-colors rounded-lg hover:bg-white/5">
-              <Search size={19} />
-            </button>
             {/* Mobile hamburger */}
             <button
               className="lg:hidden ml-1 p-2.5 text-white/60 hover:text-[#DDBC75] transition-colors rounded-lg hover:bg-white/5"
@@ -106,6 +107,42 @@ export default function Navbar() {
         <MegaMenu open={megaOpen} onClose={() => setMegaOpen(false)} />
       </div>
 
+      {/* ── Search Panel ─────────────────────────────────────── */}
+      <div
+        className={`hidden lg:block overflow-hidden transition-all duration-300 ${
+          searchOpen ? 'max-h-28 opacity-100' : 'max-h-0 opacity-0'
+        } bg-brand-black border-t border-brand-border`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              // TODO: connect backend search API — use searchQuery value
+            }}
+            className="flex items-center gap-4 bg-white/5 border border-brand-border hover:border-[#DDBC75]/30 focus-within:border-[#DDBC75]/50 rounded-xl px-5 py-3 transition-colors"
+          >
+            <Search size={17} className="text-[#DDBC75]/70 flex-shrink-0" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Məhsul, kateqoriya axtar..."
+              autoFocus={searchOpen}
+              className="flex-1 bg-transparent text-white placeholder-white/25 text-sm outline-none"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="text-white/30 hover:text-white/70 transition-colors"
+              >
+                <X size={15} />
+              </button>
+            )}
+          </form>
+        </div>
+      </div>
+
       {/* ── Mobile Drawer ────────────────────────────────────── */}
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ${
@@ -115,7 +152,7 @@ export default function Navbar() {
         <div className="px-4 py-4">
           {/* Mobile quick links */}
           <div className="flex gap-3 mb-4 pb-4 border-b border-brand-border">
-            {['Yeni Gələnlər', 'Endirim', 'Haqqımızda'].map((l) => (
+            {['Yeni Gələnlər', 'Haqqımızda'].map((l) => (
               <Link
                 key={l}
                 href="#"
@@ -136,13 +173,8 @@ export default function Navbar() {
                 key={cat.slug}
                 href={`/shop/${cat.slug}`}
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-2.5 p-3 rounded-xl border border-brand-border hover:border-[#DDBC75]/20 hover:bg-white/3 transition-all"
+                className="p-3 rounded-xl border border-brand-border hover:border-[#DDBC75]/20 hover:bg-white/3 transition-all"
               >
-                {cat.iconImage ? (
-                  <Image src={cat.iconImage} alt={cat.name} width={22} height={22} className="object-contain" />
-                ) : (
-                  <span className="text-xl">{cat.icon}</span>
-                )}
                 <span className="text-sm text-white/75 truncate">{cat.name}</span>
               </Link>
             ))}
